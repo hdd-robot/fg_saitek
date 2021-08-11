@@ -10,12 +10,69 @@
 			<!-- COM1 -->
 			<chunk>
 				<name>MasterBat</name>
-				<node>saitek_switch_panel/master_bat</node>
+				<node>/saitek_switch_panel/master_bat</node>
 			</chunk>
 
 			<chunk>
 				<name>MasterAlt</name>
-				<node>saitek_switch_panel/master_alt</node>
+				<node>/saitek_switch_panel/master_alt</node>
+			</chunk>
+			
+			<chunk>
+				<name>MasterAvionic</name>
+				<node>/saitek_switch_panel/master_avionic</node>
+			</chunk>
+			
+			<chunk>
+				<name>FuelPump</name>
+				<node>/saitek_switch_panel/fuel_pump</node>
+			</chunk>
+			
+			<chunk>
+				<name>De_Ice</name>
+				<node>/saitek_switch_panel/de_ice</node>
+			</chunk>
+			
+			<chunk>
+				<name>PitotHeat</name>
+				<node>/saitek_switch_panel/pitot_heat</node>
+			</chunk>
+			
+			<chunk>
+				<name>Cowl</name>
+				<node>/saitek_switch_panel/cowl</node>
+			</chunk>
+			
+			
+			<chunk>
+				<name>LightPanel</name>
+				<node>/saitek_switch_panel/light_panel</node>
+			</chunk>
+				
+			<chunk>
+				<name>LightBeacon</name>
+				<node>/saitek_switch_panel/light_beacon</node>
+			</chunk>
+			
+			<chunk>
+				<name>LightNav</name>
+				<node>/saitek_switch_panel/light_nav</node>
+			</chunk>
+			
+			
+			<chunk>
+				<name>LightStrob</name>
+				<node>/saitek_switch_panel/light_strob</node>
+			</chunk>
+			
+			<chunk>
+				<name>LightTaxi</name>
+				<node>/saitek_switch_panel/light_taxi</node>
+			</chunk>
+			
+			<chunk>
+				<name>LightLanding</name>
+				<node>/saitek_switch_panel/light_landing</node>
 			</chunk>
 			
 			

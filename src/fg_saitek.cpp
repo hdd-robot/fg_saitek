@@ -97,9 +97,22 @@ int main(int argc, char **argv) {
 
 	while(keepRunning){
 
+		// test code
 		for (auto obj : obj_saitek){
-			obj->process();
+
+			obj->read_data_from_saitek();
+			if (obj->data_saitek_changed()){
+				obj->interpret_data_from_saitek();
+				obj->prepar_data_for_flightGear();
+				obj->write_data_into_flightGear();
+			}
 		}
+
+
+//
+//		for (auto obj : obj_saitek){
+//			obj->process();
+//		}
 
 
 		usleep(Config::getRate());

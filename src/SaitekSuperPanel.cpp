@@ -13,22 +13,26 @@ namespace fg_saitek {
 
 void Saitek_Super_Panel::read_data_from_saitek() {
 	Saitek_Generic::read_from_saitek(saitek_buffer_read, this->file_descriptor,3);
-	Saitek_Generic::printBits(3, &saitek_buffer_read);
 
-	printf(" %hhx -", saitek_buffer_read[0]);
-	printf(" %hhx -", saitek_buffer_read[1]);
-	printf(" %hhx -", saitek_buffer_read[2]);
-	std::cout << std::endl;
+//  debug bits
+//	Saitek_Generic::printBits(3, &saitek_buffer_read);
+
+//  debug
+//	printf(" %hhx -", saitek_buffer_read[0]);
+//	printf(" %hhx -", saitek_buffer_read[1]);
+//	printf(" %hhx -", saitek_buffer_read[2]);
+//	std::cout << std::endl;
+
 }
 
 void Saitek_Super_Panel::write_data_into_saitek() {
-//	buffer_write[0]=0x00;
-//	buffer_write[1]=0x08;
-//	buffer_write[2]=0x10;
-//	buffer_write[3]=0x20;
+	//	buffer_write[0]=0x00;
+	//	buffer_write[1]=0x08;
+	//	buffer_write[2]=0x10;
+	//	buffer_write[3]=0x20;
 
-//	buffer_write[0]=0x00;
-//	buffer_write[1]=0x01 | 0x02 | 0x04;
+	//	buffer_write[0]=0x00;
+	//	buffer_write[1]=0x01 | 0x02 | 0x04;
 
 	//[0x00, 0x01 | 0x02 | 0x04]
 	//[0x00, 0x08 | 0x10 | 0x20]
@@ -41,9 +45,9 @@ bool Saitek_Super_Panel::data_saitek_changed() {
 	if ((saitek_buffer_read[0] == 0) &&
 		(saitek_buffer_read[1] == 0) &&
 		(saitek_buffer_read[2] == 0)){
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 bool Saitek_Super_Panel::data_flightGear_changed() {

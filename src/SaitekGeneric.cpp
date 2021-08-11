@@ -133,12 +133,15 @@ void Saitek_Generic::printBits(const size_t size, const void *const ptr) {
 	char *b = (char*) ptr;
 	char byte;
 	int i, j;
+	printf("<");
 	for (i = size - 1; i >= 0; i--) {
 		for (j = 7; j >= 0; j--) {
 			byte = (b[i] >> j) & 1;
 			printf("%u", byte);
+			fflush(stdout);
 		}
 	}
+	printf(">\n");
 }
 
 void Saitek_Generic::get_list_device_hid() {
