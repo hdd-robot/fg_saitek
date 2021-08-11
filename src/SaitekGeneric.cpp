@@ -46,7 +46,7 @@ const char* Saitek_Generic::bus_str(int bus) {
 
 int Saitek_Generic::init_device(std::string device) {
 
-	unsigned char buf[64];
+	char buf[64];
 	int res, desc_size;
 
 	int fd = open(device.c_str(), O_RDWR | O_NONBLOCK);
@@ -98,7 +98,7 @@ int Saitek_Generic::disable_event_device(std::string device) {
 	int res, fd, desc_size;
 	;
 
-	unsigned char buf[256];
+	char buf[256];
 	fd = open(device.c_str(), O_RDONLY | O_NONBLOCK);
 	// do not close fd
 
@@ -116,13 +116,13 @@ int Saitek_Generic::disable_event_device(std::string device) {
 	return fd;
 }
 
-int Saitek_Generic::read_from_saitek(unsigned char* buffer, int fd, int size) {
+int Saitek_Generic::read_from_saitek(char* buffer, int fd, int size) {
 	memset(buffer, 0, size);
 	read(fd, buffer, 255);
 	return 0;
 }
 
-int Saitek_Generic::write_into_saitek(unsigned char *buffer, int fd, int saize) {
+int Saitek_Generic::write_into_saitek(char *buffer, int fd, int saize) {
 	write(fd, buffer, saize);
 	return 0;
 }
@@ -130,8 +130,8 @@ int Saitek_Generic::write_into_saitek(unsigned char *buffer, int fd, int saize) 
 
 
 void Saitek_Generic::printBits(const size_t size, const void *const ptr) {
-	unsigned char *b = (unsigned char*) ptr;
-	unsigned char byte;
+	char *b = (char*) ptr;
+	char byte;
 	int i, j;
 	for (i = size - 1; i >= 0; i--) {
 		for (j = 7; j >= 0; j--) {

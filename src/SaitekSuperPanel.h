@@ -7,36 +7,49 @@
 
 #ifndef SRC_SAITEKSUPERPANEL_H_
 #define SRC_SAITEKSUPERPANEL_H_
+#include <cstring>
+#include <iostream>
+#include "SaitekGeneric.h"
+#include "FGGeneric.h"
+
 
 namespace fg_saitek {
 
 class Saitek_Super_Panel {
 protected:
 	int file_descriptor;
-	unsigned char  buffer_read[3]; // buffer read data
-	unsigned char  buffer_write[4]; // buffer write data
+	char  saitek_buffer_read[3];
+	char  saitek_buffer_write[4];
+
+	char  flightGear_buffer_read_saved[255];
+
+	char  flightGear_buffer_read[255];
+	char  flightGear_buffer_write[255];
+
+	int device_type;
+
 public:
 
-	Saitek_Super_Panel();
-	virtual ~Saitek_Super_Panel();
 
 	virtual void read_data_from_saitek();
-	virtual void read_data_from_fligh_gear();
+	virtual void read_data_from_flightGear();
 
 	virtual void write_data_into_saitek();
 	virtual void write_data_into_flightGear();
+	virtual bool data_saitek_changed();
+	virtual bool data_flightGear_changed();
+	virtual void process();
 
 
 	virtual void init_data_struct()=0;
-
-
-	virtual void interpret_data()=0;
-
+	virtual void interpret_data_from_saitek()=0;
+	virtual void prepar_data_for_flightGear()=0;
+	virtual void interpret_data_from_flightGear()=0;
+	virtual void prepar_data_for_saitek()=0;
 
 	/**
 	 * return true if data changed, false otherwise
 	 */
-	virtual bool data_changed();
 
 
 };

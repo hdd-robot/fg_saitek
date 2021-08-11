@@ -87,9 +87,9 @@ public:
 	static void get_list_file(std::vector<std::string> & , std::string, std::string filter );
 
 
-	static int read_from_saitek(unsigned char* buffer, int, int);
+	static int read_from_saitek(char* buffer, int, int);
 
-	static int write_into_saitek(unsigned char* buffer, int, int);
+	static int write_into_saitek(char* buffer, int, int);
 
 
 

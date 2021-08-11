@@ -39,6 +39,12 @@ typedef struct Saitek_Switch_data{
 } Saitek_Switch_data;
 
 
+typedef struct Saitek_FlightGear_data{
+	char gear_n;
+	char gear_l;
+	char gear_r;
+}Saitek_FlightGear_data;
+
 
 
 class Saitek_Switch : public Saitek_Super_Panel{
@@ -47,8 +53,11 @@ private:
 public:
 	Saitek_Switch(int);
 	virtual ~Saitek_Switch();
-	virtual void interpret_data();
+	virtual void interpret_data_from_saitek();
 	virtual void init_data_struct();
+	virtual void prepar_data_for_flightGear();
+	virtual void interpret_data_from_flightGear();
+	virtual void prepar_data_for_saitek();
 };
 
 } /* namespace fg_saitek */

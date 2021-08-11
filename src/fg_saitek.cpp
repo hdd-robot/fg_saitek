@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <signal.h>
+
+#include "Config.h"
 #include "SaitekGeneric.h"
 #include "SaitekSuperPanel.h"
 #include "SaitekSwitch.h"
@@ -96,14 +98,11 @@ int main(int argc, char **argv) {
 	while(keepRunning){
 
 		for (auto obj : obj_saitek){
-			obj->read_data_from_saitek();
-			obj->interpret_data();
-
-			obj->write_data_into_saitek();
+			obj->process();
 		}
 
 
-		usleep(1000000);
+		usleep(Config::getRate());
 	}
 
 	return 0;
