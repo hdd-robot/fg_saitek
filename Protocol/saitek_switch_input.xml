@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<generic>
+
+		<input>
+		
+			<line_separator>\n</line_separator>
+			<var_separator>,</var_separator>
+			<!-- TOP -->
+			<!-- COM1 -->
+			<chunk>
+				<name>MasterBat</name>
+				<node>saitek_switch_panel/master_bat</node>
+			</chunk>
+
+			<chunk>
+				<name>MasterAlt</name>
+				<node>saitek_switch_panel/master_alt</node>
+			</chunk>
+			
+			
+		</input>
+	</generic>
+</PropertyList>
+			
+			

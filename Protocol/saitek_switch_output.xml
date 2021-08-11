@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<generic>
+		<output>
+			<line_separator>newline</line_separator>
+			<var_separator>,</var_separator>
+			<binary_mode>false</binary_mode>
+		
+			<!-- Landing Gear N -->
+			
+			<!-- Landing Gear L -->
+			
+			<!-- Landing Gear R -->
+
+		</output>
+	</generic>
+</PropertyList>
