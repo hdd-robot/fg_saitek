@@ -39,15 +39,23 @@ void Saitek_Switch::interpret_data_from_saitek() {
 	if(saitek_buffer_read[1] & 4) 	{ data_struct_saitek.lght_strob 	= 1 ; }
 	if(saitek_buffer_read[1] & 8) 	{ data_struct_saitek.lght_taxi 		= 1 ; }
 	if(saitek_buffer_read[1] & 16)  { data_struct_saitek.lght_landing 	= 1 ; }
-	if(saitek_buffer_read[1] & 32)  { data_struct_saitek.mag_off 		= 1 ; }
-	if(saitek_buffer_read[1] & 64)  { data_struct_saitek.mag_right 		= 1 ; }
-	if(saitek_buffer_read[1] & 128) { data_struct_saitek.mag_left 		= 1 ; }
+
+
+	if(saitek_buffer_read[1] & 32)  { data_struct_saitek.mag_val 		= 0 ; }
+	if(saitek_buffer_read[1] & 64)  { data_struct_saitek.mag_val 		= 1 ; }
+	if(saitek_buffer_read[1] & 128) { data_struct_saitek.mag_val 		= 2 ; }
 
 	// Octet 2
-	if(saitek_buffer_read[2] & 1)	{ data_struct_saitek.mag_both 		= 1 ; }
-	if(saitek_buffer_read[2] & 2) 	{ data_struct_saitek.mag_start 		= 1 ; }
-	if(saitek_buffer_read[2] & 4) 	{ data_struct_saitek.gear_up 		= 1 ; }
-	if(saitek_buffer_read[2] & 8) 	{ data_struct_saitek.gear_down 		= 1 ; }
+	if(saitek_buffer_read[2] & 1)	{ data_struct_saitek.mag_val 		= 3 ; }
+	if(saitek_buffer_read[2] & 2) 	{ data_struct_saitek.mag_val 		= 4 ; }
+
+
+	if(saitek_buffer_read[2] & 4) 	{ data_struct_saitek.gear_up_down 	= 0 ; }
+	if(saitek_buffer_read[2] & 8) 	{ data_struct_saitek.gear_up_down	= 1 ; }
+
+
+
+
 
 }
 
@@ -71,7 +79,9 @@ void Saitek_Switch::prepar_data_for_flightGear() {
 			 std::to_string(data_struct_saitek.lght_nav) + ","+
 			 std::to_string(data_struct_saitek.lght_strob) + ","+
 			 std::to_string(data_struct_saitek.lght_taxi) + ","+
-			 std::to_string(data_struct_saitek.lght_landing)
+			 std::to_string(data_struct_saitek.lght_landing)+ ","+
+			 std::to_string(data_struct_saitek.gear_up_down)+ ","+
+			 std::to_string(data_struct_saitek.mag_val)
 			 + "\n";
 	strcpy(flightGear_buffer_write, buffer.c_str());
 	std::cout << "********" << flightGear_buffer_write << std::endl;

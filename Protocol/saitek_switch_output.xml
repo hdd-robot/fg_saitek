@@ -6,12 +6,14 @@
 			<var_separator>,</var_separator>
 			<binary_mode>false</binary_mode>
 		
-			<!-- Landing Gear N -->
+			<!-- Landing GearDown -->
+			<chunk>
+				<name>gearDown</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/controls/gear/gear-down</node>
+			</chunk>
 			
-			<!-- Landing Gear L -->
-			
-			<!-- Landing Gear R -->
-
 		</output>
 	</generic>
 </PropertyList>

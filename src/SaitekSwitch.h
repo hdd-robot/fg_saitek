@@ -29,13 +29,10 @@ typedef struct Saitek_Switch_data{
 	char lght_strob;
 	char lght_taxi;
 	char lght_landing;
-	char gear_up;
-	char gear_down;
-	char mag_off;
-	char mag_right;
-	char mag_left;
-	char mag_both;
-	char mag_start;
+	char gear_up_down;;
+	char mag_val;
+
+
 } Saitek_Switch_data;
 
 

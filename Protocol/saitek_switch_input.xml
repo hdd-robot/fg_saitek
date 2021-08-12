@@ -75,6 +75,16 @@
 				<node>/saitek_switch_panel/light_landing</node>
 			</chunk>
 			
+			<chunk>
+				<name>GearUpDown</name>
+				<node>/saitek_switch_panel/gear_up_down</node>
+			</chunk>
+			
+			<chunk>
+				<name>Magnetos</name>
+				<node>/saitek_switch_panel/magnetos</node>
+			</chunk>
+			
 			
 		</input>
 	</generic>

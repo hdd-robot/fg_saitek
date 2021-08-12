@@ -26,7 +26,10 @@ copy saitek_nas.nas  to ~/.fgfs/Nasal/
 # new driver 
 
 ```
-fgfs --generic=socket,in,30,,49006,udp,saitek_switch_input
+fgfs \
+     --timeofday=morning \
+     --generic=socket,in,30,,49006,udp,saitek_switch_input \
+     --generic=socket,in,30,127.0.0.1,49005,udp,saitek_switch_output
 ```
 
 

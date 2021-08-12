@@ -59,7 +59,7 @@ setlistener ("/saitek_switch_panel/master_avionic", bot_master_avionic_sw);
 #              FUEL PUMP             #
 ######################################
 var bot_fuel_pump_sw = func {
-	sw_button_tf("fuel_pump","/controls/fuel/tank/boost-pump");
+	sw_button_tf("fuel_pump","/controls/engines/engine/fuel-pump");
 }
 
 setprop ("/saitek_switch_panel/fuel_pump", "0");
@@ -93,12 +93,11 @@ setlistener ("/saitek_switch_panel/pitot_heat", bot_pitot_heat_sw );
 
 
 
-##### NOT WORKING, I don't know what is the action in GF
 ######################################
 #              COWL                  #
 ######################################
 var bot_cowl_sw = func {
-######	sw_button_tf("cowl"," ????? ");
+	sw_button_tf("cowl","/controls/engines/engine/cowl-flaps-norm");
 }
 
 setprop ("/saitek_switch_panel/cowl", "0");
@@ -108,7 +107,7 @@ setlistener ("/saitek_switch_panel/cowl", bot_cowl_sw);
 
 ##### NOT WORKING, I don't know what is the action to perform in GF
 ######################################
-#              GIGHT PANEL           #
+#              LIGHT PANEL           #
 ######################################
 var bot_light_panel_sw = func {
 ######	sw_button_tf("cowl"," ????? ");
@@ -172,6 +171,33 @@ setprop ("/saitek_switch_panel/light_landing", "0");
 setlistener ("/saitek_switch_panel/light_landing", bot_light_landing_sw );
 
 
+######################################
+#              GEAR UP DOWN          #
+######################################
+var bot_gear_up_down_sw = func {
+ sw_button_tf("gear_up_down","/controls/gear/gear-down");
+}
+
+setprop ("/saitek_switch_panel/gear_up_down", "0");
+setlistener ("/saitek_switch_panel/gear_up_down", bot_gear_up_down_sw );
+
+
+
+
+######################################
+#				MAGNETO              # 
+######################################
+var bot_magneto_rot = func {
+	
+	var val = getprop("/saitek_switch_panel/magnetos");
+	
+	setprop ("/controls/switches/magnetos", val);
+
+	setprop ("/saitek_switch_panel/magnetos", "0");
+}
+
+setprop ("/saitek_switch_panel/magnetos", "0");
+setlistener ("/saitek_switch_panel/magnetos", bot_magneto_rot );
 
 
 
