@@ -45,7 +45,7 @@ typedef struct Saitek_FlightGear_data{
 
 
 class Saitek_Switch : public Saitek_Super_Panel{
-private:
+protected:
 	Saitek_Switch_data data_struct_saitek;
 public:
 	Saitek_Switch(int);

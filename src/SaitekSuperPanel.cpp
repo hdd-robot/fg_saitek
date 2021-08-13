@@ -14,8 +14,9 @@ namespace fg_saitek {
 void Saitek_Super_Panel::read_data_from_saitek() {
 	Saitek_Generic::read_from_saitek(saitek_buffer_read, this->file_descriptor,3);
 
+
 //  debug bits
-//	Saitek_Generic::printBits(3, &saitek_buffer_read);
+//  Saitek_Generic::printBits(4, &saitek_buffer_read);
 
 //  debug
 //	printf(" %hhx -", saitek_buffer_read[0]);

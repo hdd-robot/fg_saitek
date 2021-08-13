@@ -18,8 +18,8 @@ namespace fg_saitek {
 class Saitek_Super_Panel {
 protected:
 	int file_descriptor;
-	char  saitek_buffer_read[3];
-	char  saitek_buffer_write[4];
+	char  saitek_buffer_read[50];
+	char  saitek_buffer_write[50];
 
 	char  flightGear_buffer_read_saved[255];
 

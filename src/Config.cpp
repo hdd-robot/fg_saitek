@@ -22,7 +22,7 @@ std::string Config::switch_ip_adress = "127.0.0.1";
 int Config::switch_port_in    = 49005;
 int Config::switch_port_out   = 49006;
 
-int Config::rate = 1000000;
+int Config::rate = 10000;
 
 Config::Config() {
 

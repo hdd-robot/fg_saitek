@@ -8,6 +8,7 @@
 #include "SaitekGeneric.h"
 #include "SaitekSuperPanel.h"
 #include "SaitekSwitch.h"
+#include "SaitekRadio.h"
 
 using namespace fg_saitek;
 
@@ -71,7 +72,8 @@ int main(int argc, char **argv) {
 
 		Saitek_Super_Panel* obj = nullptr;
 		if (std::stoi((*hid)[0]) == STK_RADIO) {
-
+			std::cout <<(*hid)[0] << std::endl;
+			obj = new Saitek_Radio(std::stoi((*hid)[5]));
 		}
 		if (std::stoi((*hid)[0]) == STK_AUTOP) {
 
@@ -102,6 +104,7 @@ int main(int argc, char **argv) {
 
 			obj->read_data_from_saitek();
 			if (obj->data_saitek_changed()){
+				std::cout << " - changed  " << std::endl;
 				obj->interpret_data_from_saitek();
 				obj->prepar_data_for_flightGear();
 				obj->write_data_into_flightGear();

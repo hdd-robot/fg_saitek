@@ -7,9 +7,11 @@ add_executable(fg_saitek
 	src/Config.cpp  
 	src/FGGeneric.cpp  
 	src/fg_saitek.cpp  
-	src/SaitekGeneric.cpp  
+	src/SaitekGeneric.cpp
+	src/SaitekSuperPanel.cpp  
 	src/SaitekSwitch.cpp
-	src/SaitekSuperPanel.cpp
+	src/SaitekRadio.cpp
+	
 	)
 
 	

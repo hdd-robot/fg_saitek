@@ -6,7 +6,7 @@
  */
 
 #include "FGGeneric.h"
-
+#include <iostream>
 namespace fg_saitek {
 
 FG_Generic::FG_Generic() {
@@ -38,7 +38,6 @@ void FG_Generic::read_data_from_fg(int type_data, char *buf, int size) {
 	if (type_data == FG_SWITC) {
 		PORT_IN = Config::getSwitchPortIn();
 	}
-
 
 	//connect
 	if ((s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1) {
@@ -87,6 +86,7 @@ void FG_Generic::write_data_into_fg(int type_data, char *buf, int size) {
 		PORT_OUT = Config::getSwitchPortOut();
 		SERVER = Config::getSwitchIpAdress();
 	}
+
 
 	struct sockaddr_in si_other;
 	int s;
