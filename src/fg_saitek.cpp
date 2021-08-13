@@ -98,17 +98,27 @@ int main(int argc, char **argv) {
 	std::cout << " ====================\n";
 
 	while(keepRunning){
-
+		int saitek_touched = 0;
 		// test code
 		for (auto obj : obj_saitek){
-
+			saitek_touched = 0;
 			obj->read_data_from_saitek();
 			if (obj->data_saitek_changed()){
-				std::cout << " - changed  " << std::endl;
+				std::cout << " - saitek data changed  " << std::endl;
 				obj->interpret_data_from_saitek();
 				obj->prepar_data_for_flightGear();
 				obj->write_data_into_flightGear();
+				saitek_touched = 1;
 			}
+
+			obj->read_data_from_flightGear();
+			if (obj->data_flightGear_changed() || saitek_touched == 1){
+				std::cout << " - FG data changed  " << std::endl;
+				obj->interpret_data_from_flightGear();
+				obj->prepar_data_for_saitek();
+				obj->write_data_into_saitek();
+			}
+
 		}
 
 

@@ -11,6 +11,7 @@ namespace fg_saitek {
 
 Saitek_Radio::Saitek_Radio(int fd) {
 	device_type = FG_RADIO;
+	this->size_saitek_buffer = 22;
 	this->file_descriptor =fd;
 
 }
@@ -333,9 +334,11 @@ void Saitek_Radio::interpret_data_from_flightGear() {
 
 void Saitek_Radio::prepar_data_for_saitek() {
 
+	memset(&saitek_buffer_write, 0x00, sizeof(saitek_buffer_write));
+
 	// le premier bit peut etre 1 ou A // A pour ne rien afficher // ne peut etre 0, ni 2-9
 
-	if (data_radio_saitek.topCom1 == 1) {
+	if (data_radio_saitek.topCom1 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.com1, flightGear_Radio_data.com1d, buffer);
 		fgStrCpy(&saitek_buffer_write[0], buffer, 5);
@@ -343,7 +346,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 		fgStrCpy(&saitek_buffer_write[5], buffer, 5);
 	}
 
-	if (data_radio_saitek.botCom1 == 1) {
+	if (data_radio_saitek.botCom1 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.com1, flightGear_Radio_data.com1d, buffer);
 		fgStrCpy(&saitek_buffer_write[10], buffer, 5);
@@ -352,7 +355,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 
 	}
 
-	if (data_radio_saitek.topCom2 == 1) {
+	if (data_radio_saitek.topCom2 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.com2, flightGear_Radio_data.com2d, buffer);
 		fgStrCpy(&saitek_buffer_write[0], buffer, 5);
@@ -360,7 +363,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 		fgStrCpy(&saitek_buffer_write[5], buffer, 5);
 	}
 
-	if (data_radio_saitek.botCom2 == 1) {
+	if (data_radio_saitek.botCom2 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.com2, flightGear_Radio_data.com2d, buffer);
 		fgStrCpy(&saitek_buffer_write[10], buffer, 5);
@@ -368,7 +371,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 		fgStrCpy(&saitek_buffer_write[15], buffer, 5);
 	}
 
-	if (data_radio_saitek.topNav1 == 1) {
+	if (data_radio_saitek.topNav1 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.nav1, flightGear_Radio_data.nav1d, buffer);
 		fgStrCpy(&saitek_buffer_write[0], buffer, 5);
@@ -376,7 +379,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 		fgStrCpy(&saitek_buffer_write[5], buffer, 5);
 	}
 
-	if (data_radio_saitek.botNav1 == 1) {
+	if (data_radio_saitek.botNav1 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.nav1, flightGear_Radio_data.nav1d, buffer);
 		fgStrCpy(&saitek_buffer_write[10], buffer, 5);
@@ -384,7 +387,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 		fgStrCpy(&saitek_buffer_write[15], buffer, 5);
 	}
 
-	if (data_radio_saitek.topNav2 == 1) {
+	if (data_radio_saitek.topNav2 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.nav2, flightGear_Radio_data.nav2d, buffer);
 		fgStrCpy(&saitek_buffer_write[0], buffer, 5);
@@ -392,7 +395,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 		fgStrCpy(&saitek_buffer_write[5], buffer, 5);
 	}
 
-	if (data_radio_saitek.botNav2 == 1) {
+	if (data_radio_saitek.botNav2 == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.nav2, flightGear_Radio_data.nav2d, buffer);
 		fgStrCpy(&saitek_buffer_write[10], buffer, 5);
@@ -401,7 +404,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 	}
 
 	//DME
-	if (data_radio_saitek.topDme == 1) {
+	if (data_radio_saitek.topDme == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.nav2, flightGear_Radio_data.nav2d, buffer);
 		fgStrCpy(&saitek_buffer_write[0], buffer, 5);
@@ -409,7 +412,7 @@ void Saitek_Radio::prepar_data_for_saitek() {
 		fgStrCpy(&saitek_buffer_write[5], buffer, 5);
 	}
 
-	if (data_radio_saitek.botDme == 1) {
+	if (data_radio_saitek.botDme == '1') {
 		char buffer[5];
 		freqToBuf(flightGear_Radio_data.nav2, flightGear_Radio_data.nav2d, buffer);
 		fgStrCpy(&saitek_buffer_write[10], buffer, 5);
@@ -418,13 +421,13 @@ void Saitek_Radio::prepar_data_for_saitek() {
 	}
 
 	//XPDR
-	if (data_radio_saitek.topXpdr == 1) {
+	if (data_radio_saitek.topXpdr == '1') {
 		char buffer[5];
 		freqToXPDR(flightGear_Radio_data.xpdr, buffer);
 		fgStrCpy(&saitek_buffer_write[5], buffer, 5);
 	}
 
-	if (data_radio_saitek.botXpdr == 1) {
+	if (data_radio_saitek.botXpdr == '1') {
 		char buffer[5];
 		freqToXPDR(flightGear_Radio_data.xpdr, buffer);
 		fgStrCpy(&saitek_buffer_write[10], buffer, 5);

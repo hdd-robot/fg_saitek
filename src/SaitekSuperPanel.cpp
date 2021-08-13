@@ -37,8 +37,8 @@ void Saitek_Super_Panel::write_data_into_saitek() {
 
 	//[0x00, 0x01 | 0x02 | 0x04]
 	//[0x00, 0x08 | 0x10 | 0x20]
-
-	Saitek_Generic::write_into_saitek(saitek_buffer_write, this->file_descriptor, 2);
+	std::cout << "********************" << sizeof(saitek_buffer_write) << std::hex << saitek_buffer_write[0] << std::endl;
+	Saitek_Generic::write_into_saitek(saitek_buffer_write, this->file_descriptor, this->size_saitek_buffer);
 }
 
 
@@ -69,7 +69,10 @@ bool Saitek_Super_Panel::data_flightGear_changed() {
 
 
 void Saitek_Super_Panel::read_data_from_flightGear() {
+	std::cout << "start reading " << std::endl;
 	FG_Generic::read_data_from_fg(device_type, flightGear_buffer_read, sizeof(flightGear_buffer_read));
+	std::cout << flightGear_buffer_read << std::endl;
+	std::cout << "end reading " << std::endl;
 }
 
 void Saitek_Super_Panel::write_data_into_flightGear() {

@@ -53,6 +53,7 @@ void FG_Generic::read_data_from_fg(int type_data, char *buf, int size) {
 	//bind socket to port
 	if (bind(s, (struct sockaddr*) &si_other, sizeof(si_other)) == -1) {
 		printf("error bind");
+		perror("error bind");
 		exit(-3);
 	}
 

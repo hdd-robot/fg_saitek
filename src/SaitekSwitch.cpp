@@ -12,6 +12,7 @@ namespace fg_saitek {
 
 Saitek_Switch::Saitek_Switch(int fd) {
 	device_type = FG_SWITC;
+	this->size_saitek_buffer = 2;
 	this->file_descriptor =fd;
 }
 
