@@ -17,17 +17,17 @@ namespace fg_saitek {
 
 class Saitek_Super_Panel {
 protected:
-	int file_descriptor;
-	int size_saitek_buffer;
-	char  saitek_buffer_read[255];
-	char  saitek_buffer_write[255];
+	int  file_descriptor;
+	int  size_saitek_buffer;
+	char saitek_buffer_read[255];
+	char saitek_buffer_write[255];
 
-	char  flightGear_buffer_read_saved[255];
+	char flightGear_buffer_read_saved[255];
 
-	char  flightGear_buffer_read[255];
-	char  flightGear_buffer_write[255];
+	char flightGear_buffer_read[255];
+	char flightGear_buffer_write[255];
 
-	int device_type;
+	int  device_type;
 
 public:
 

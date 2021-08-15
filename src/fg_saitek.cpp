@@ -37,7 +37,6 @@ void intHandler(int p) {
 	for (auto obj : obj_saitek){
 		delete(obj);
 	}
-
 }
 
 

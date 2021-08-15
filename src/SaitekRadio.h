@@ -71,12 +71,14 @@ typedef struct flightGear_Radio_data{
     char nav2d[10];
 
     char adf[10];
-    char adfd[10];
+ //   char adfd[10];
     char adfstb[10];
-    char adfstbd[10];
+ //   char adfstbd[10];
 
     char dme[10];
     char dmed[10];
+    char dmemin[10];
+    char dmemind[10];
 
     char xpdr[10];
 }FlightGear_Radio_data;
@@ -100,6 +102,8 @@ protected:
 	FlightGear_Radio_data flightGear_Radio_data;
 	DataSTKsaved dataSTKsaved;
 
+
+
 public:
 	Saitek_Radio(int);
 	virtual ~Saitek_Radio();
@@ -109,10 +113,14 @@ public:
 	virtual void interpret_data_from_flightGear();
 	virtual void prepar_data_for_saitek();
 
-	void freqToDME(char* entier, char* decimal, char* buffer);
+	void freqToDME(char entier[], char decimal[], char buffer[]);
+	void freqToDMEMin(char* entier, char* buffer);
 	void freqToXPDR(char* entier, char* buffer);
-	void fgStrCpy(char src[], char dest[],int size);
+	void fgStrCpy(char dest[], char src[],int size);
 	void freqToBuf(char* entier, char* decimal, char* buffer);
+	void freqToADF(char* entier, char* buffer);
+	std::vector<std::string> tokenise(const std::string &str, char dilimiter);
+	void debug_buffer(char[], int);
 
 };
 

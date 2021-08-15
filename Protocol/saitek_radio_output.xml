@@ -94,6 +94,14 @@
 				<type>string</type>
 				<node>/instrumentation/dme/indicated-distance-nm</node>
 			</chunk>
+			
+			<!-- DME -->
+			<chunk>
+				<name>dmetime</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/instrumentation/dme/indicated-time-min</node>
+			</chunk>
 
 			<!-- XPDR -->
 			<chunk>

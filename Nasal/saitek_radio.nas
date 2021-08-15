@@ -3,6 +3,32 @@
 ######################################
 
 
+####  inc_xpdr_double
+#####################
+
+var inc_xpdr_double = func (val, inc,pos){
+	
+	var dec_val = math.mod(val, 100);
+	var int_val = int(val) - dec_val ;
+	
+	if(pos == '0'){
+		dec_val = dec_val + inc;
+		if (dec_val > 79) { int_val = 00; }
+		if (dec_val < 00) { int_val = 99; }
+	}
+	
+	if(pos == '1'){
+		int_val = int_val + (inc*100) ;
+		if (int_val > 9900) { int_val = 100; }
+		if (int_val <= 0099) { int_val = 9900; }
+	}
+
+	return int_val + dec_val;
+}
+
+
+
+
 ####  inc_freq_double
 #####################
 
@@ -22,7 +48,7 @@ var inc_freq_double = func (val, min, max, inc,pos){
 		if (int_val > max) { int_val = min; }
 		if (int_val < min) { int_val = max; }
 	}
-	
+
 	return int_val + dec_val;
 }
 
@@ -87,19 +113,19 @@ var inc_xpdr_chanel = func (stkprop, min, max){
 		var standby = getprop(proprFreq);
 		
 		if(switch == "1"){  
-			standby = inc_freq_double(standby,min,max,1,'1');
+			standby = inc_xpdr_double(standby,1,'1');
 		}
 		
 		if(switch == "2"){  
-			standby = inc_freq_double(standby,min,max,-1,'1');
+			standby = inc_xpdr_double(standby,-1,'1');
 		}
 		
 		if(switch == "3"){ 
-			standby = inc_freq_double(standby,min,max,1,'0');
+			standby = inc_xpdr_double(standby,1,'0');
 		}
 		
 		if(switch == "4"){ 
-			standby = inc_freq_double(standby,min,max,-1,'0');
+			standby = inc_xpdr_double(standby,-1,'0');
 		}		
 		setprop (proprFreq, standby);
 	}
