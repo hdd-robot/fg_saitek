@@ -31,7 +31,9 @@ fgfs \
      --generic=socket,in,30,,49006,udp,saitek_switch_input \
      --generic=socket,out,30,127.0.0.1,49005,udp,saitek_switch_output \
      --generic=socket,in,30,,49002,udp,saitek_radio_input \
-     --generic=socket,out,30,127.0.0.1,49001,udp,saitek_radio_output
+     --generic=socket,out,30,127.0.0.1,49001,udp,saitek_radio_output \
+     --generic=socket,in,30,,49004,udp,saitek_multi_input \
+     --generic=socket,out,30,127.0.0.1,49003,udp,saitek_multi_output
 ```
 
 

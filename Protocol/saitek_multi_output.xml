@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<generic>
+		<output>
+			<line_separator>newline</line_separator>
+			<var_separator>,</var_separator>
+			<binary_mode>false</binary_mode>
+
+			<!-- ALT VAL -->
+			<chunk>
+				<name>altVal</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/settings/target-alt-ft</node>
+			</chunk>
+
+			<!-- VS VAL -->
+			<chunk>
+				<name>vsVal</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/settings/target-pressure-rate-fpm</node>
+			</chunk>
+			
+			<!-- IAS VAL -->
+			<chunk>
+				<name>iasVal</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/settings/target-pressure-rate</node>
+			</chunk>
+			
+			
+			<!-- HDG -->		
+			<chunk>
+				<name>hdgVal</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/settings/heading-bug-deg</node>
+			</chunk>
+				
+			
+			<!-- CRS -->
+			<chunk>
+				<name>crsVal</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/settings/heading-bug-deg</node>
+			</chunk>
+			
+			
+			<!-- AP BTN -->
+			<chunk>
+				<name>apBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/ap/state</node>
+			</chunk>
+						
+			<!-- HDG BTN -->
+			<chunk>
+				<name>hdgBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/hdg/state</node>
+			</chunk>
+			
+			<!-- NAV BTN -->
+			<chunk>
+				<name>navBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/nav-arm</node>
+			</chunk>	
+					
+			<!-- IAS BTN == NAV   NOT WORK-->
+			<chunk>
+				<name>navBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/nav-arm</node>
+			</chunk>	
+			
+			
+
+			<!-- ALT BTN -->			
+			<chunk>
+				<name>altBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/alt-arm</node>
+			</chunk>
+			
+						
+			<!-- VS BTN -->			
+			<chunk>
+				<name>vsBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/vs</node>
+			</chunk>
+						
+			<!-- APR BTN -->			
+			<chunk>
+				<name>aprBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/apr-arm</node>
+			</chunk>				
+			<!-- REV BTN -->
+			<chunk>
+				<name>revBtn</name>
+				<format>%s</format>
+				<type>string</type>
+				<node>/autopilot/KAP140/annunciators/rev-arm</node>
+			</chunk>							
+			
+		</output>
+	</generic>
+</PropertyList>
+			

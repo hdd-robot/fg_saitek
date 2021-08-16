@@ -11,7 +11,7 @@ add_executable(fg_saitek
 	src/SaitekSuperPanel.cpp  
 	src/SaitekSwitch.cpp
 	src/SaitekRadio.cpp
-	
+	src/SaitekMulti.cpp
 	)
 
 	

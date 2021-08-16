@@ -9,6 +9,7 @@
 #include "SaitekSuperPanel.h"
 #include "SaitekSwitch.h"
 #include "SaitekRadio.h"
+#include "SaitekMulti.h"
 
 using namespace fg_saitek;
 
@@ -75,7 +76,8 @@ int main(int argc, char **argv) {
 			obj = new Saitek_Radio(std::stoi((*hid)[5]));
 		}
 		if (std::stoi((*hid)[0]) == STK_AUTOP) {
-
+			std::cout <<(*hid)[0] << std::endl;
+			obj = new Saitek_Multi(std::stoi((*hid)[5]));
 		}
 		if (std::stoi((*hid)[0]) == STK_SWITC) {
 			std::cout <<(*hid)[0] << std::endl;
@@ -127,7 +129,7 @@ int main(int argc, char **argv) {
 //		}
 
 
-		usleep(Config::getRate());
+		usleep(Config::getRate()*1);
 	}
 
 	return 0;

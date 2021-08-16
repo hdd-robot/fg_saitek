@@ -80,7 +80,6 @@ void Saitek_Radio::prepar_data_for_flightGear() {
 	if (data_radio_saitek.topSwcPush == '1' && data_radio_saitek.topCom1 == '1' ) { strcat(flightGear_buffer_write,"1,"); } 	else	{ strcat(flightGear_buffer_write,"0,"); }
 
 	char rotary1pos[3]= "0";
-
 	rotary1pos[0]= '0';
 	if (data_radio_saitek.topInc  == '1' && data_radio_saitek.topCom1 == '1' ) { rotary1pos[0]='1'; }
 	if (data_radio_saitek.topDec  == '1' && data_radio_saitek.topCom1 == '1' ) { rotary1pos[0]='2'; }
@@ -251,8 +250,6 @@ void Saitek_Radio::prepar_data_for_flightGear() {
 
 	strcat(flightGear_buffer_write,"\n");
 
-	std::cout << flightGear_buffer_write <<std::endl;
-
 }
 
 
@@ -277,6 +274,10 @@ void Saitek_Radio::interpret_data_from_flightGear() {
 	std::string token;
 	std::string receved_str = std::string(flightGear_buffer_read);
 	std::vector<std::string> elements = tokenise(receved_str, ',');
+
+	if(elements.size() != 13){
+		return;
+	}
 
 	//com1 standby
 	std::string com1stby = 	elements[0];
@@ -362,7 +363,6 @@ void Saitek_Radio::prepar_data_for_saitek() {
 	memset(&saitek_buffer_write, 0x00, sizeof(saitek_buffer_write));
 
 	// le premier octet peut etre 1 ou A // A pour ne rien afficher // ne peut etre 0, ni 2-9
-
 
 	//COM1
 
@@ -624,7 +624,6 @@ void Saitek_Radio::freqToXPDR(char* entier, char* buffer) {
 
 	int size_entier = 0;
 	for (int i = 0 ; i < 5 ; i ++){
-		char x = entier[i];
 		if (entier[i] == 0 || entier[i] == '\n' ) {  //end of line in receved data
 			break;
 		}
