@@ -113,8 +113,6 @@ int main(int argc, char **argv) {
 
 
 void print_hello_msg(){
-
-
 	std::cout << std::endl;
 	std::cout << "  ███████╗ ██████╗       ███████╗ █████╗ ██╗████████╗███████╗██╗  ██╗ " << std::endl;
 	std::cout << "  ██╔════╝██╔════╝       ██╔════╝██╔══██╗██║╚══██╔══╝██╔════╝██║ ██╔╝ " << std::endl;
