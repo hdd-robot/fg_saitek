@@ -157,12 +157,7 @@ void Saitek_Multi::interpret_data_from_flightGear() {
 
 	//AP BTN
 	std::string ap = elements[5];
-	if (ap.compare("true") == 0){
-		res="1";
-	}
-	else{
-		res = "0";
-	}
+	if (ap.compare("true") == 0){ res="1"; } else{ res = "0";}
 	strcpy(flightGear_multi_data.btnAp,  res.c_str());
 
 	//HDG BTN
@@ -197,7 +192,7 @@ void Saitek_Multi::interpret_data_from_flightGear() {
 
 	//REV BTN
 	std::string rev = elements[12];
-	if (rev.compare("true") == 0) res="1"; else res = "0";
+	if (rev.compare("true\n") == 0) res="1"; else res = "0";
 	strcpy(flightGear_multi_data.btnRev,  res.c_str());
 
 }
@@ -210,7 +205,7 @@ void Saitek_Multi::prepar_data_for_saitek() {
 
 	char buffer1[5];
 	char buffer2[5];
-	char btn = 0;
+	unsigned char btn = 0;
 
 	memset(&buffer1, 0xA, 5);
 	memset(&buffer2, 0xA, 5);
@@ -234,43 +229,68 @@ void Saitek_Multi::prepar_data_for_saitek() {
 
 
 	if (strcmp(flightGear_multi_data.btnAp,"1")==0) {
-		btn = btn || 1;
+		btn = btn | 1;
 	}
 
 	if (strcmp(flightGear_multi_data.btnHdg,"1")==0) {
-		btn = btn || 2;
+		btn = btn | 2;
 	}
 
 	if (strcmp(flightGear_multi_data.btnNav,"1")==0) {
-		btn = btn || 4;
+		btn = btn | 4;
 	}
 
 	if (strcmp(flightGear_multi_data.btnIas,"1")==0) {
-		btn = btn || 8;
+		btn = btn | 8;
 	}
 
 	if (strcmp(flightGear_multi_data.btnAlt,"1")==0) {
-		btn = btn || 16;
+		btn = btn | 16;
 	}
 
 	if (strcmp(flightGear_multi_data.btnVs,"1")==0) {
-		btn = btn || 32;
+		btn = btn | 32;
 	}
 
 	if (strcmp(flightGear_multi_data.btnApr,"1")==0) {
-		btn = btn || 64;
+		btn = btn | 64;
 	}
 
 	if (strcmp(flightGear_multi_data.btnRev,"1")==0) {
-		btn = btn || 128;
+		btn = btn | 128;
+	}
+
+	//saitek_buffer_write[0] = saitek_buffer_write[0] + 15;
+
+	if (saitek_buffer_write[0] == 2){
+		saitek_buffer_write[0] = 18;
 	}
 
 
 	fgStrCpy(&saitek_buffer_write[0], buffer1, 5);
 	fgStrCpy(&saitek_buffer_write[5], buffer2, 5);
 
+
+	// bizzar !! pour ecrire un 2 sur saitek il faut ajouter 16
+	if (saitek_buffer_write[0] == 2){
+		saitek_buffer_write[0] = 2+16;
+	}
+
+//	if (saitek_buffer_write[0] == 5){
+//			saitek_buffer_write[0] = ??;
+//	}
+//
+//	if (saitek_buffer_write[0] == 7){
+//			saitek_buffer_write[0] = ??;
+//	}
+//
+//	if (saitek_buffer_write[0] == 9){
+//			saitek_buffer_write[0] = ??;
+//	}
+
+
 	//write btn
-	fgStrCpy(&saitek_buffer_write[10], &btn, 1);
+	saitek_buffer_write[10] = btn;
 
 }
 
@@ -279,44 +299,47 @@ void Saitek_Multi::saitekFillBuffer(char dest[], int size_dest, char src[]) {
 	char  res[5];
 	memset(&res, 0xA, sizeof(res));
 
-	int size_nput = 0;
+	int size_input = 0;
 	for (int i = 0 ; i < 5 ; i ++){
-		if (src[i] == 0 || src[i] == '\n' ) {  //end of line in receved data
+		if (src[i] == 0) {  //end of line in receved data
 			break;
 		}
-		size_nput = i+1;
+		size_input++;
 	}
 
-	if (size_nput == 0){
+	if (size_input == 0){
 		src[0] = '0';
-		size_nput = 1;
+		size_input = 1;
 	}
 
-	for (int i = 0; i < size_nput ; i++){
+	for (int i = 0; i < size_input ; i++){
 		if(src[i] == '.'){
-			for (int j = 0; j < size_nput ; j++){
-				src[i] = 0;
+			for (int j = i; j < size_input ; j++){
+				src[j] = 0;
 			}
-			size_nput = i;
+			size_input = i;
 			break;
 		}
-
 	}
+
+	if (size_input == 0){
+		src[0] = '0';
+		size_input = 1;
+	}
+
 
 	for (int i = 0; i < size_dest ; i++){
-		res[i+(5-size_dest)] = src[i];
+		res[i+(5-size_input)] = src[i];
 	}
 
 	for (int i = 0; i < 5 ; i++){
 		if(res[i] >= '0' && res[i] <= '9'){
-			res[i] = res[i] - '0';
+			res[i] = (res[i] - '0');
 		}
 	}
 
 
 	memcpy(dest,res,5);
-
-
 
 }
 

@@ -29,6 +29,8 @@ protected:
 
 	int  device_type;
 
+
+	static char tmp;
 public:
 
 

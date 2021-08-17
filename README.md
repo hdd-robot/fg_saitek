@@ -45,3 +45,8 @@ printf "0,0\n" | nc -4u -w1 127.0.0.1 49006
 ```
 
 printf "0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0\n" | nc -4u -w1 127.0.0.1 49002
+
+
+
+printf "20000,-0,0,,,false,false,false,false,false,false,false,false\n" | nc -4u -w1 127.0.0.1 49003
+

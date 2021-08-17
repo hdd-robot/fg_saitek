@@ -16,9 +16,7 @@ using namespace fg_saitek;
 static volatile int keepRunning = 1;
 std::vector<Saitek_Super_Panel*> obj_saitek;
 
-
 void intHandler(int p);
-
 
 void intHandler(int p) {
 	std::cout << "Good Bye ! \n" << std::endl;

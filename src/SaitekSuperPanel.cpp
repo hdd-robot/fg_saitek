@@ -27,6 +27,8 @@ void Saitek_Super_Panel::read_data_from_saitek() {
 
 }
 
+char Saitek_Super_Panel::tmp = 1;
+
 void Saitek_Super_Panel::write_data_into_saitek() {
 	//	buffer_write[0]=0x00;
 	//	buffer_write[1]=0x08;
@@ -38,6 +40,20 @@ void Saitek_Super_Panel::write_data_into_saitek() {
 
 	//[0x00, 0x01 | 0x02 | 0x04]
 	//[0x00, 0x08 | 0x10 | 0x20]
+
+//	std::cout << " ====>>> " << +tmp << std::endl,
+//	saitek_buffer_write[0] = tmp++;
+//	saitek_buffer_write[1] = 3;
+//	saitek_buffer_write[2] = 1;
+//	saitek_buffer_write[3] = 1;
+//	saitek_buffer_write[4] = 1;
+//	saitek_buffer_write[5] = 1;
+//	saitek_buffer_write[6] = 1;
+//	saitek_buffer_write[7] = 1;
+//	saitek_buffer_write[8] = 1;
+//	saitek_buffer_write[9] = 1;
+//	saitek_buffer_write[10] = 1;
+
 	Saitek_Generic::write_into_saitek(saitek_buffer_write, this->file_descriptor, this->size_saitek_buffer);
 }
 
