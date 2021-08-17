@@ -29,17 +29,7 @@ void Saitek_Radio::init_data_struct() {
 
 void Saitek_Radio::interpret_data_from_saitek() {
 	memset(&data_radio_saitek, 0, sizeof(data_radio_saitek));
-	// Octet 0
-	/*
-	if((buffer[2] & 1)	&& (dataSTKsaved.topIncD == 1)){ data_radio_saitek.topIncD = 1 ; dataSTKsaved.topIncD = -dataSTKsaved.topIncD  ;}
-	if((buffer[2] & 2)	&& (dataSTKsaved.topDecD == 1)){ data_radio_saitek.topDecD = 1 ; dataSTKsaved.topDecD = -dataSTKsaved.topDecD 	;}
-	if((buffer[2] & 4)	&& (dataSTKsaved.topInc  == 1)){ data_radio_saitek.topInc  = 1 ; dataSTKsaved.topInc  = -dataSTKsaved.topInc 	;}
-	if((buffer[2] & 8)	&& (dataSTKsaved.topDec  == 1)){ data_radio_saitek.topDec  = 1 ; dataSTKsaved.topDec  = -dataSTKsaved.topDec 	;}
-	if((buffer[2] & 16) && (dataSTKsaved.botIncD == 1)){ data_radio_saitek.botIncD = 1 ; dataSTKsaved.botIncD = -dataSTKsaved.botIncD 	;}
-	if((buffer[2] & 32) && (dataSTKsaved.botDecD == 1)){ data_radio_saitek.botDecD = 1 ; dataSTKsaved.botDecD = -dataSTKsaved.botDecD 	;}
-	if((buffer[2] & 64) && (dataSTKsaved.botInc  == 1)){ data_radio_saitek.botInc  = 1 ; dataSTKsaved.botInc  = -dataSTKsaved.botInc 	;}
-	if((buffer[2] & 128)&& (dataSTKsaved.botDec  == 1)){ data_radio_saitek.botDec  = 1 ; dataSTKsaved.botDec  = -dataSTKsaved.botDec 	;}
-	*/
+
 	if(saitek_buffer_read[2] & 1)	{ dataSTKsaved.topIncD = -dataSTKsaved.topIncD  ; if(dataSTKsaved.topIncD== 1){data_radio_saitek.topIncD = '1' ;}   }
 	if(saitek_buffer_read[2] & 2)	{ dataSTKsaved.topDecD = -dataSTKsaved.topDecD  ; if(dataSTKsaved.topDecD== 1){data_radio_saitek.topDecD = '1' ;}   }
 	if(saitek_buffer_read[2] & 4)	{ dataSTKsaved.topInc  = -dataSTKsaved.topInc   ; if(dataSTKsaved.topInc == 1){data_radio_saitek.topInc  = '1' ;}   }

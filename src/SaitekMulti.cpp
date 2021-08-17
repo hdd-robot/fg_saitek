@@ -23,15 +23,13 @@ Saitek_Multi::~Saitek_Multi() {
 void Saitek_Multi::interpret_data_from_saitek() {
 	memset(&data_multi_saitek, 0, sizeof(data_multi_saitek));
 
-	Saitek_Generic::printBits(1,&saitek_buffer_read[0]);
-
 	if(saitek_buffer_read[0] & 1)	{ data_multi_saitek.rotAlt 	= '1' ; }
 	if(saitek_buffer_read[0] & 2)	{ data_multi_saitek.rotVs 	= '1' ; }
 	if(saitek_buffer_read[0] & 4)	{ data_multi_saitek.rotIas 	= '1' ; }
 	if(saitek_buffer_read[0] & 8)	{ data_multi_saitek.rotHdg 	= '1' ; }
 	if(saitek_buffer_read[0] & 16)	{ data_multi_saitek.rotCrs 	= '1' ; }
-	if(saitek_buffer_read[0] & 32)	{ dataSTK_saved_multi.rotIncD  = -dataSTK_saved_multi.rotIncD   ; if(dataSTK_saved_multi.rotIncD == 1){data_multi_saitek.rotInc  = '1' ;}}
-	if(saitek_buffer_read[0] & 64)	{ dataSTK_saved_multi.rotDecD  = -dataSTK_saved_multi.rotDecD   ; if(dataSTK_saved_multi.rotDecD == 1){data_multi_saitek.rotDec  = '1' ;}}
+	if(saitek_buffer_read[0] & 32)	{ dataSTK_saved_multi.rotInc  = -dataSTK_saved_multi.rotInc   ; if(dataSTK_saved_multi.rotInc == 1){data_multi_saitek.rotInc  = '1' ;}}
+	if(saitek_buffer_read[0] & 64)	{ dataSTK_saved_multi.rotDec  = -dataSTK_saved_multi.rotDec   ; if(dataSTK_saved_multi.rotDec == 1){data_multi_saitek.rotDec  = '1' ;}}
 	if(saitek_buffer_read[0] & 128)	{ data_multi_saitek.botAp 	= '1' ; }
 
 	if(saitek_buffer_read[1] & 1)	{ data_multi_saitek.botHdg 		= '1' ; }
@@ -100,8 +98,16 @@ void Saitek_Multi::prepar_data_for_flightGear() {
 	rotary1pos[2]='\0';
 	strcat(flightGear_buffer_write,rotary1pos);
 
+	//TRIM
+	rotary1pos[0]= '0';
+	if (data_multi_saitek.trimUp    == '1' ) { rotary1pos[0]='1'; }
+	if (data_multi_saitek.trimDown  == '1' ) { rotary1pos[0]='2'; }
+	rotary1pos[1]=',';
+	rotary1pos[2]='\0';
+	strcat(flightGear_buffer_write,rotary1pos);
+
 	//AP
-	if (data_multi_saitek.botAp == '1' )  { strcat(flightGear_buffer_write,"1,"); } 	else	{ strcat(flightGear_buffer_write,"0,"); }
+	if (data_multi_saitek.botAp == '1' )  { strcat(flightGear_buffer_write,"1,"); }	else	{ strcat(flightGear_buffer_write,"0,"); }
 	//HDG
 	if (data_multi_saitek.botHdg == '1' ) { strcat(flightGear_buffer_write,"1,"); } else	{ strcat(flightGear_buffer_write,"0,"); }
 	//NAV
@@ -111,16 +117,23 @@ void Saitek_Multi::prepar_data_for_flightGear() {
 	//ALT
 	if (data_multi_saitek.botAlt == '1' ) { strcat(flightGear_buffer_write,"1,"); } else	{ strcat(flightGear_buffer_write,"0,"); }
 	//VS
-	if (data_multi_saitek.botVs == '1' )  { strcat(flightGear_buffer_write,"1,"); } 	else	{ strcat(flightGear_buffer_write,"0,"); }
+	if (data_multi_saitek.botVs == '1' )  { strcat(flightGear_buffer_write,"1,"); }	else	{ strcat(flightGear_buffer_write,"0,"); }
 	//APR
 	if (data_multi_saitek.botApr == '1' ) { strcat(flightGear_buffer_write,"1,"); } else	{ strcat(flightGear_buffer_write,"0,"); }
 	//REV
 	if (data_multi_saitek.botRev == '1' ) { strcat(flightGear_buffer_write,"1,"); } else	{ strcat(flightGear_buffer_write,"0,"); }
 
+	// AUTO Trottle
+	if (data_multi_saitek.botAutoTrot == '1' ) { strcat(flightGear_buffer_write,"1,"); } else	{ strcat(flightGear_buffer_write,"0,"); }
+
+	//FLAPS
+	rotary1pos[0]= '0';
+	if (data_multi_saitek.botFlapsUp    == '1' ) { rotary1pos[0]='1'; }
+	if (data_multi_saitek.botFlapsDown  == '1' ) { rotary1pos[0]='2'; }
+	rotary1pos[1]=',';
+	rotary1pos[2]='\0';
+	strcat(flightGear_buffer_write,rotary1pos);
 	strcat(flightGear_buffer_write,"\n");
-
-	std::cout << flightGear_buffer_write <<std::endl;
-
 }
 
 void Saitek_Multi::interpret_data_from_flightGear() {
@@ -198,9 +211,6 @@ void Saitek_Multi::interpret_data_from_flightGear() {
 }
 
 void Saitek_Multi::prepar_data_for_saitek() {
-
-	std::cout << "write in saitek " << std::endl;
-
 	memset(&saitek_buffer_write, 0x00, sizeof(saitek_buffer_write));
 
 	char buffer1[5];
@@ -338,9 +348,7 @@ void Saitek_Multi::saitekFillBuffer(char dest[], int size_dest, char src[]) {
 		}
 	}
 
-
 	memcpy(dest,res,5);
-
 }
 
 void Saitek_Multi::fgStrCpy(char dest[], char src[], int size){
@@ -350,7 +358,6 @@ void Saitek_Multi::fgStrCpy(char dest[], char src[], int size){
 		i++;
 	}
 }
-
 
 
 std::vector<std::string> Saitek_Multi::tokenise(const std::string &str, char dilimiter) {

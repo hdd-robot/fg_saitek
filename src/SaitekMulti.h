@@ -66,8 +66,8 @@ typedef struct flightGear_Multi_data{
 
 
 typedef struct dataSTKsavedMulti{
-    char rotIncD;
-    char rotDecD;
+    char rotInc;
+    char rotDec;
 }DataSTKsavedMulti;
 
 

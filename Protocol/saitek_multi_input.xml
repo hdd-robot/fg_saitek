@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<PropertyList>
+	<generic>
+
+		<input>
+			<line_separator>\n</line_separator>
+			<var_separator>,</var_separator>
+			<!-- NAV -->
+			<chunk>
+				<name>bot_alt_inc</name>
+				<node>/saitek_multi_panel/bot_alt_inc</node>
+			</chunk>
+			
+			<!-- VS -->
+			<chunk>
+				<name>bot_vs_inc</name>
+				<node>/saitek_multi_panel/bot_vs_inc</node>
+			</chunk>
+			
+			<!-- IAS -->
+			<chunk>
+				<name>bot_ias_inc</name>
+				<node>/saitek_multi_panel/bot_ias_inc</node>
+			</chunk>
+			
+			<!-- HDG -->
+			<chunk>
+				<name>bot_hdg_inc</name>
+				<node>/saitek_multi_panel/bot_hdg_inc</node>
+			</chunk>
+			
+			<!-- CRS -->
+			<chunk>
+				<name>bot_crs_inc</name>
+				<node>/saitek_multi_panel/bot_crs_inc</node>
+			</chunk>
+			
+			<!-- TRIM -->
+			
+			<chunk>
+				<name>bot_trim_inc</name>
+				<node>/saitek_multi_panel/bot_trim_inc</node>
+			</chunk>
+			
+			<!-- AP -->
+			<chunk>
+				<name>bot_ap</name>
+				<node>/saitek_multi_panel/bot_ap</node>
+			</chunk>
+			
+			<!-- HDG -->
+			<chunk>
+				<name>bot_heg</name>
+				<node>/saitek_multi_panel/bot_heg</node>
+			</chunk>
+			
+			<!-- NAV -->
+			<chunk>
+				<name>bot_nav</name>
+				<node>/saitek_multi_panel/bot_nav</node>
+			</chunk>
+			
+			<!-- IAS -->
+			<chunk>
+				<name>bot_ias</name>
+				<node>/saitek_multi_panel/bot_ias</node>
+			</chunk>
+			
+			<!-- ALT -->
+			<chunk>
+				<name>bot_alt</name>
+				<node>/saitek_multi_panel/bot_alt</node>
+			</chunk>
+			
+			<!-- VS -->
+			<chunk>
+				<name>bot_vs</name>
+				<node>/saitek_multi_panel/bot_vs</node>
+			</chunk>
+			
+			<!-- APR -->
+			<chunk>
+				<name>bot_apr</name>
+				<node>/saitek_multi_panel/bot_apr</node>
+			</chunk>
+			
+			<!-- REV -->
+			<chunk>
+				<name>bot_rev</name>
+				<node>/saitek_multi_panel/bot_rev</node>
+			</chunk>
+			
+			<!-- AUTO TROTTLLE -->
+			<chunk>
+				<name>bot_auto_trottle</name>
+				<node>/saitek_multi_panel/bot_auto_trottle</node>
+			</chunk>
+			
+			<!-- FLAPS -->
+			<chunk>
+				<name>bot_flaps_inc</name>
+				<node>/saitek_multi_panel/bot_flaps_inc</node>
+			</chunk>
+			
+		</input>
+	</generic>
+</PropertyList>

@@ -13,18 +13,6 @@ namespace fg_saitek {
 
 void Saitek_Super_Panel::read_data_from_saitek() {
 	Saitek_Generic::read_from_saitek(saitek_buffer_read, this->file_descriptor,3);
-
-
-//  debug bits
-  std::cout <<  "read from saitek bits :: " ;
-  Saitek_Generic::printBits(4, &saitek_buffer_read);
-
-//  debug
-//	printf(" %hhx -", saitek_buffer_read[0]);
-//	printf(" %hhx -", saitek_buffer_read[1]);
-//	printf(" %hhx -", saitek_buffer_read[2]);
-//	std::cout << std::endl;
-
 }
 
 char Saitek_Super_Panel::tmp = 1;
@@ -40,19 +28,6 @@ void Saitek_Super_Panel::write_data_into_saitek() {
 
 	//[0x00, 0x01 | 0x02 | 0x04]
 	//[0x00, 0x08 | 0x10 | 0x20]
-
-//	std::cout << " ====>>> " << +tmp << std::endl,
-//	saitek_buffer_write[0] = tmp++;
-//	saitek_buffer_write[1] = 3;
-//	saitek_buffer_write[2] = 1;
-//	saitek_buffer_write[3] = 1;
-//	saitek_buffer_write[4] = 1;
-//	saitek_buffer_write[5] = 1;
-//	saitek_buffer_write[6] = 1;
-//	saitek_buffer_write[7] = 1;
-//	saitek_buffer_write[8] = 1;
-//	saitek_buffer_write[9] = 1;
-//	saitek_buffer_write[10] = 1;
 
 	Saitek_Generic::write_into_saitek(saitek_buffer_write, this->file_descriptor, this->size_saitek_buffer);
 }
@@ -77,18 +52,14 @@ bool Saitek_Super_Panel::data_flightGear_changed() {
 			break;
 		}
 	}
-
 	strcpy(flightGear_buffer_read_saved, flightGear_buffer_read);
-
 	return changed;
 }
 
 
 void Saitek_Super_Panel::read_data_from_flightGear() {
-	std::cout << "start reading " << std::endl;
 	FG_Generic::read_data_from_fg(device_type, flightGear_buffer_read, sizeof(flightGear_buffer_read));
-	std::cout << flightGear_buffer_read << std::endl;
-	std::cout << "end reading " << std::endl;
+
 }
 
 void Saitek_Super_Panel::write_data_into_flightGear() {
